@@ -28,20 +28,27 @@ pipeline {
                 sh 'terraform plan'
             }
         }
-        stage('Apply / Destroy') {
+        stage('Apply') {
             steps {
-                script {
-                    if (params.action == 'apply') {
-
-                        sh 'terraform apply'
-                    } else if (params.action == 'destroy') {
-                        sh 'terraform destroy'
-                    } else {
-                        error "Invalid action selected. Please choose either 'apply' or 'destroy'."
-                    }
-                }
+                sh 'terraform apply'
             }
         }
+
+
+//         stage('Apply / Destroy') {
+//             steps {
+//                 script {
+//                     if (params.action == 'apply') {
+//
+//                         sh 'terraform apply'
+//                     } else if (params.action == 'destroy') {
+//                         sh 'terraform destroy'
+//                     } else {
+//                         error "Invalid action selected. Please choose either 'apply' or 'destroy'."
+//                     }
+//                 }
+//             }
+//         }
 
     }
 }
