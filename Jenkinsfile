@@ -35,20 +35,20 @@ pipeline {
         }
 
 
-//         stage('Apply / Destroy') {
-//             steps {
-//                 script {
-//                     if (params.action == 'apply') {
-//
-//                         sh 'terraform apply'
-//                     } else if (params.action == 'destroy') {
-//                         sh 'terraform destroy'
-//                     } else {
-//                         error "Invalid action selected. Please choose either 'apply' or 'destroy'."
-//                     }
-//                 }
-//             }
-//         }
+        stage('Apply / Destroy') {
+            steps {
+                script {
+                    if (params.action == 'apply') {
+
+                        sh 'terraform ${action}'
+                    } else if (params.action == 'destroy') {
+                        sh 'terraform ${action} --auto-approve'
+                    } else {
+                        error "Invalid action selected. Please choose either 'apply' or 'destroy'."
+                    }
+                }
+            }
+        }
 
     }
 }
